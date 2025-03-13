@@ -2,79 +2,93 @@
 
 import Link from 'next/link'
 import Header from '@/components/Header'
-import { CheckCircleIcon, AcademicCapIcon, ClockIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
+import { ChatBubbleBottomCenterTextIcon, UserGroupIcon, AcademicCapIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-16">
+    <main className="page-content">
+      <div className="page-background">
+        <div className="background-blur top-0 -left-1/4 bg-[#1F526B]"></div>
+        <div className="background-blur top-1/3 -right-1/4 bg-[#9ECCFA]"></div>
+        <div className="background-blur -bottom-1/4 left-1/3 bg-[#E6D8C7]"></div>
+        <div className="background-blur bottom-0 -right-1/4 bg-[#FD6F2F]"></div>
+      </div>
+      
       <Header />
 
       {/* Hero Section */}
-      <section className="container mx-auto pt-16 pb-20 px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              <span className="text-blue-600 block mb-2">Desenvolva</span>
-              suas habilidades de comunicação
+      <section className="container mx-auto px-4 py-12 md:py-20">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-5">
+            <h1 className="text-3xl md:text-4xl font-semibold leading-tight">
+              <span className="text-white">
+                Desenvolva sua comunicação de forma natural e efetiva
+              </span>
             </h1>
-            <p className="text-xl text-gray-600">
-              Conectamos você com os melhores profissionais para aprimorar sua expressão verbal e corporal.
+            <p className="text-base text-white/80">
+              Aprenda técnicas de comunicação com especialistas e transforme sua maneira de se expressar.
             </p>
-            <div>
+            <div className="flex gap-3">
               <Link 
                 href="/cadastro"
-                className="inline-flex px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-base font-medium"
+                className="glass-button"
               >
                 Comece Agora
               </Link>
+              <Link 
+                href="/sobre"
+                className="px-5 py-2 rounded-md text-white border border-white/30 hover:bg-white/10 transition-all duration-200"
+              >
+                Saiba Mais
+              </Link>
             </div>
           </div>
-          <div className="relative h-72 md:h-96 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl overflow-hidden">
+          <div className="backdrop-blur-sm bg-white/10 rounded-lg aspect-video relative overflow-hidden border border-white/20 hidden md:block">
             <div className="absolute inset-0 flex items-center justify-center">
-              <ChatBubbleLeftRightIcon className="w-12 h-12 text-white/80" />
+              <ChatBubbleBottomCenterTextIcon className="w-20 h-20 text-[#FD6F2F]/30" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Por que escolher a Comunique-se?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Nossa plataforma oferece tudo que você precisa para desenvolver suas habilidades de comunicação.
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-semibold text-white mb-3">Como podemos ajudar você?</h2>
+            <p className="text-white/80 max-w-2xl mx-auto text-sm">
+              Nossa metodologia foi desenvolvida para ajudar você a se comunicar melhor em qualquer situação.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <AcademicCapIcon className="w-4 h-4 text-blue-600" />
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
+              <div className="icon-container">
+                <AcademicCapIcon />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Aulas Personalizadas</h3>
-              <p className="text-sm text-gray-600">
-                Aprenda no seu ritmo com professores especializados.
+              <h3 className="text-base font-semibold text-white mb-2">Metodologia Personalizada</h3>
+              <p className="text-white/70 text-sm">
+                Aulas adaptadas ao seu perfil e objetivos.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <CheckCircleIcon className="w-4 h-4 text-blue-600" />
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
+              <div className="icon-container">
+                <UserGroupIcon />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Feedback em Tempo Real</h3>
-              <p className="text-sm text-gray-600">
-                Receba orientações práticas para melhorar sua comunicação.
+              <h3 className="text-base font-semibold text-white mb-2">Prática em Grupo</h3>
+              <p className="text-white/70 text-sm">
+                Exercícios práticos com outros alunos para desenvolver habilidades sociais.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <ClockIcon className="w-4 h-4 text-blue-600" />
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
+              <div className="icon-container">
+                <ClockIcon />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Flexibilidade</h3>
-              <p className="text-sm text-gray-600">
-                Escolha horários que se adequem à sua rotina.
+              <h3 className="text-base font-semibold text-white mb-2">Horários Flexíveis</h3>
+              <p className="text-white/70 text-sm">
+                Agende suas aulas de acordo com sua disponibilidade.
               </p>
             </div>
           </div>
@@ -82,26 +96,28 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-blue-600 py-12">
+      <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-white">
-              <h2 className="text-2xl font-bold mb-2">Pronto para começar?</h2>
-              <p className="text-blue-100 text-sm">Junte-se a milhares de alunos.</p>
-            </div>
-            <div className="flex gap-3">
-              <Link 
-                href="/cadastro" 
-                className="px-5 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"
-              >
-                Comece Agora
-              </Link>
-              <Link 
-                href="/sobre" 
-                className="px-5 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors text-sm font-medium"
-              >
-                Saiba Mais
-              </Link>
+          <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-semibold text-white mb-1">Pronto para transformar sua comunicação?</h2>
+                <p className="text-white/70 text-sm">Comece sua jornada hoje mesmo.</p>
+              </div>
+              <div className="flex gap-3">
+                <Link 
+                  href="/cadastro" 
+                  className="glass-button"
+                >
+                  Comece Agora
+                </Link>
+                <Link 
+                  href="/sobre" 
+                  className="px-5 py-2 rounded-md text-white border border-white/30 hover:bg-white/10 transition-all duration-200"
+                >
+                  Saiba Mais
+                </Link>
+              </div>
             </div>
           </div>
         </div>
