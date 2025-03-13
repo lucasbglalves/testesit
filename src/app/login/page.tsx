@@ -8,9 +8,9 @@ export default function Login() {
   return (
     <main className="page-content">
       <div className="page-background">
-        <div className="background-blur top-1/4 -left-1/4 bg-purple-400 animate-blob"></div>
-        <div className="background-blur top-1/3 -right-1/4 bg-cyan-400 animate-blob animation-delay-2000"></div>
-        <div className="background-blur -bottom-1/4 left-1/3 bg-pink-400 animate-blob animation-delay-4000"></div>
+        <div className="background-blur top-1/4 -left-1/4 bg-[#1F526B] animate-blob"></div>
+        <div className="background-blur top-1/3 -right-1/4 bg-[#9ECCFA] animate-blob animation-delay-2000"></div>
+        <div className="background-blur -bottom-1/4 left-1/3 bg-[#E6D8C7] animate-blob animation-delay-4000"></div>
       </div>
       
       <Header />
@@ -31,7 +31,7 @@ export default function Login() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <EnvelopeIcon className="h-5 w-5 text-purple-400" />
+                  <EnvelopeIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="email"
@@ -49,7 +49,7 @@ export default function Login() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <LockClosedIcon className="h-5 w-5 text-purple-400" />
+                  <LockClosedIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="password"
@@ -65,13 +65,13 @@ export default function Login() {
                     id="lembrar"
                     name="lembrar"
                     type="checkbox"
-                    className="h-4 w-4 rounded border-white/30 bg-white/10 text-purple-500 focus:ring-purple-500"
+                    className="h-4 w-4 rounded border-white/30 bg-white/10 text-[#FD6F2F] focus:ring-[#FD6F2F]"
                   />
                   <label htmlFor="lembrar" className="ml-2 block text-sm text-white/70">
                     Lembrar-me
                   </label>
                 </div>
-                <Link href="/recuperar-senha" className="text-sm text-purple-400 hover:text-purple-300">
+                <Link href="/recuperar-senha" className="text-sm text-[#FD6F2F] hover:text-[#e65a1a]">
                   Esqueceu a senha?
                 </Link>
               </div>
@@ -88,7 +88,7 @@ export default function Login() {
           <div className="mt-6 text-center">
             <p className="text-white/70">
               Ainda não tem uma conta?{' '}
-              <Link href="/cadastro" className="text-purple-400 hover:text-purple-300">
+              <Link href="/cadastro" className="text-[#FD6F2F] hover:text-[#e65a1a]">
                 Cadastre-se
               </Link>
             </p>

@@ -1,14 +1,15 @@
 'use client'
 
 import Header from '@/components/Header'
+import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 export default function Contato() {
   return (
     <main className="page-content">
       <div className="page-background">
-        <div className="background-blur top-1/4 -left-1/4 bg-pink-400 animate-blob"></div>
-        <div className="background-blur top-1/3 -right-1/4 bg-purple-400 animate-blob animation-delay-2000"></div>
-        <div className="background-blur -bottom-1/4 left-1/3 bg-cyan-400 animate-blob animation-delay-4000"></div>
+        <div className="background-blur top-1/4 -left-1/4 bg-[#1F526B] animate-blob"></div>
+        <div className="background-blur top-1/3 -right-1/4 bg-[#9ECCFA] animate-blob animation-delay-2000"></div>
+        <div className="background-blur -bottom-1/4 left-1/3 bg-[#E6D8C7] animate-blob animation-delay-4000"></div>
       </div>
       
       <Header />

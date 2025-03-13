@@ -8,9 +8,9 @@ export default function Cadastro() {
   return (
     <main className="page-content">
       <div className="page-background">
-        <div className="background-blur top-1/4 -left-1/4 bg-cyan-400 animate-blob"></div>
-        <div className="background-blur top-1/3 -right-1/4 bg-pink-400 animate-blob animation-delay-2000"></div>
-        <div className="background-blur -bottom-1/4 left-1/3 bg-purple-400 animate-blob animation-delay-4000"></div>
+        <div className="background-blur top-1/4 -left-1/4 bg-[#1F526B] animate-blob"></div>
+        <div className="background-blur top-1/3 -right-1/4 bg-[#9ECCFA] animate-blob animation-delay-2000"></div>
+        <div className="background-blur -bottom-1/4 left-1/3 bg-[#E6D8C7] animate-blob animation-delay-4000"></div>
       </div>
       
       <Header />
@@ -31,7 +31,7 @@ export default function Cadastro() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <UserIcon className="h-5 w-5 text-purple-400" />
+                  <UserIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="text"
@@ -49,7 +49,7 @@ export default function Cadastro() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <EnvelopeIcon className="h-5 w-5 text-purple-400" />
+                  <EnvelopeIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="email"
@@ -67,7 +67,7 @@ export default function Cadastro() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <LockClosedIcon className="h-5 w-5 text-purple-400" />
+                  <LockClosedIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="password"
@@ -85,7 +85,7 @@ export default function Cadastro() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <LockClosedIcon className="h-5 w-5 text-purple-400" />
+                  <LockClosedIcon className="h-5 w-5 text-[#FD6F2F]" />
                 </div>
                 <input
                   type="password"
@@ -108,7 +108,7 @@ export default function Cadastro() {
           <div className="mt-6 text-center">
             <p className="text-white/70">
               Já tem uma conta?{' '}
-              <Link href="/login" className="text-purple-400 hover:text-purple-300">
+              <Link href="/login" className="text-[#FD6F2F] hover:text-[#e65a1a]">
                 Faça login
               </Link>
             </p>
