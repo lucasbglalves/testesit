@@ -4,104 +4,82 @@ import Header from '@/components/Header'
 
 export default function Contato() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-16">
+    <main className="page-content">
+      <div className="page-background">
+        <div className="background-blur top-1/4 -left-1/4 bg-pink-400 animate-blob"></div>
+        <div className="background-blur top-1/3 -right-1/4 bg-purple-400 animate-blob animation-delay-2000"></div>
+        <div className="background-blur -bottom-1/4 left-1/3 bg-cyan-400 animate-blob animation-delay-4000"></div>
+      </div>
+      
       <Header />
       
       <section className="container mx-auto px-4 min-h-[calc(100vh-4rem)] flex items-center">
-        <div className="w-full max-w-5xl mx-auto py-12">
-          <h1 className="text-4xl font-bold mb-8 text-center">Entre em Contato</h1>
+        <div className="w-full max-w-2xl mx-auto">
+          <h1 className="text-3xl font-bold text-white mb-6 text-center">
+            Entre em Contato
+          </h1>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <form className="space-y-4 bg-white p-6 rounded-lg shadow-md">
+          <div className="backdrop-blur-sm bg-white/5 rounded-3xl p-6 border border-white/10">
+            <form className="space-y-4">
               <div>
-                <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="nome" className="block text-sm font-medium text-white mb-1">
                   Nome Completo
                 </label>
                 <input
                   type="text"
                   id="nome"
                   name="nome"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="glass-input !py-2"
                   placeholder="Digite seu nome"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-1">
                   E-mail
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="glass-input !py-2"
                   placeholder="Digite seu e-mail"
                 />
               </div>
 
               <div>
-                <label htmlFor="assunto" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="assunto" className="block text-sm font-medium text-white mb-1">
                   Assunto
                 </label>
                 <input
                   type="text"
                   id="assunto"
                   name="assunto"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="glass-input !py-2"
                   placeholder="Digite o assunto"
                 />
               </div>
 
               <div>
-                <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="mensagem" className="block text-sm font-medium text-white mb-1">
                   Mensagem
                 </label>
                 <textarea
                   id="mensagem"
                   name="mensagem"
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  rows={2}
+                  className="glass-input resize-none !py-2"
                   placeholder="Digite sua mensagem"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="glass-button w-full !py-2"
               >
                 Enviar Mensagem
               </button>
             </form>
-
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold mb-6">Outras Formas de Contato</h2>
-              
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-lg font-medium text-blue-600 mb-1">Endereço</h3>
-                  <p className="text-gray-600">
-                    Av. Paulista, 1000<br />
-                    São Paulo - SP
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-medium text-blue-600 mb-1">Contatos</h3>
-                  <p className="text-gray-600">
-                    Email: contato@comuniquese.com.br<br />
-                    Telefone: (11) 1234-5678
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-medium text-blue-600 mb-1">Horário de Atendimento</h3>
-                  <p className="text-gray-600">
-                    Segunda a Sexta<br />
-                    9h às 18h
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
