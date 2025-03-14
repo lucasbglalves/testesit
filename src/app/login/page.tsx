@@ -1,10 +1,23 @@
 'use client'
 
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/outline'
 
 export default function Login() {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Simula login (em um MVP real, isso seria uma chamada à API)
+    localStorage.setItem('isLoggedIn', 'true')
+    router.push('/dashboard')
+  }
+
   return (
     <main className="page-content">
       <div className="page-background">
@@ -24,7 +37,7 @@ export default function Login() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-base font-medium text-white mb-2">
                 E-mail
@@ -36,9 +49,11 @@ export default function Login() {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="glass-input pl-11"
                   placeholder="Digite seu e-mail"
+                  required
                 />
               </div>
             </div>
@@ -54,9 +69,11 @@ export default function Login() {
                 <input
                   type="password"
                   id="senha"
-                  name="senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="glass-input pl-11"
                   placeholder="Digite sua senha"
+                  required
                 />
               </div>
               <div className="mt-2 flex items-center justify-between">
