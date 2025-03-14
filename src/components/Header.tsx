@@ -1,97 +1,147 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  useEffect(() => {
+    // Verifica o estado de login quando o componente é montado
+    if (typeof window !== 'undefined') {
+      setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true')
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn')
+    setIsLoggedIn(false)
+    router.push('/')
+  }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-md"></div>
-      <nav className="container mx-auto px-4 h-14 relative">
-        <div className="flex items-center justify-between h-full">
-          <Link href="/" className="text-lg font-medium text-white">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/20 border-b border-white/10">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          <Link href="/" className="text-2xl font-bold text-white">
             Comunique-se
           </Link>
           
-          <div className="hidden md:flex items-center gap-5">
-            <Link href="/sobre" className="text-sm text-white/80 hover:text-white transition-colors">
+          {/* Menu Desktop */}
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/sobre" className="text-white/80 hover:text-white transition-colors">
               Sobre
             </Link>
-            <Link href="/curso" className="text-sm text-white/80 hover:text-white transition-colors">
+            <Link href="/curso" className="text-white/80 hover:text-white transition-colors">
               Cursos
             </Link>
-            <Link href="/professores" className="text-sm text-white/80 hover:text-white transition-colors">
+            <Link href="/professores" className="text-white/80 hover:text-white transition-colors">
               Professores
             </Link>
-            <Link href="/contato" className="text-sm text-white/80 hover:text-white transition-colors">
+            <Link href="/contato" className="text-white/80 hover:text-white transition-colors">
               Contato
             </Link>
-            <Link 
-              href="/cadastro"
-              className="glass-button ml-2"
-            >
-              Começar Agora
-            </Link>
-          </div>
-
-          <button
-            type="button"
-            className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <XMarkIcon className="w-5 h-5" />
+            {isLoggedIn ? (
+              <>
+                <Link href="/dashboard" className="text-[#FD6F2F] hover:text-[#e65a1a] transition-colors">
+                  Dashboard
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="glass-button"
+                >
+                  Sair
+                </button>
+              </>
             ) : (
-              <Bars3Icon className="w-5 h-5" />
+              <Link href="/login" className="glass-button">
+                Entrar
+              </Link>
+            )}
+          </nav>
+
+          {/* Menu Mobile */}
+          <button
+            className="md:hidden text-white"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <XMarkIcon className="h-6 w-6" />
+            ) : (
+              <Bars3Icon className="h-6 w-6" />
             )}
           </button>
         </div>
 
-        {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 p-4 bg-white/5 backdrop-blur-md md:hidden border-t border-white/10">
-            <div className="flex flex-col space-y-3">
-              <Link 
-                href="/sobre" 
-                className="text-sm text-white/80 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+        {/* Menu Mobile Dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4">
+            <nav className="flex flex-col gap-4">
+              <Link
+                href="/sobre"
+                className="text-white/80 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Sobre
               </Link>
-              <Link 
-                href="/curso" 
-                className="text-sm text-white/80 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+              <Link
+                href="/curso"
+                className="text-white/80 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Cursos
               </Link>
-              <Link 
-                href="/professores" 
-                className="text-sm text-white/80 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+              <Link
+                href="/professores"
+                className="text-white/80 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Professores
               </Link>
-              <Link 
-                href="/contato" 
-                className="text-sm text-white/80 hover:text-white transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+              <Link
+                href="/contato"
+                className="text-white/80 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contato
               </Link>
-              <Link 
-                href="/cadastro"
-                className="glass-button text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Começar Agora
-              </Link>
-            </div>
+              {isLoggedIn ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="text-[#FD6F2F] hover:text-[#e65a1a] transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={() => {
+                      handleLogout()
+                      setIsMenuOpen(false)
+                    }}
+                    className="glass-button"
+                  >
+                    Sair
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="glass-button"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Entrar
+                </Link>
+              )}
+            </nav>
           </div>
         )}
-      </nav>
+      </div>
     </header>
   )
 } 
