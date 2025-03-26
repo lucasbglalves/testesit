@@ -1,7 +1,7 @@
 'use client'
 
 import Header from '@/components/Header'
-import { AcademicCapIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 export default function Professores() {
   return (
@@ -20,10 +20,15 @@ export default function Professores() {
             Nossa Equipe
           </h1>
           
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center backdrop-blur-sm bg-white/5 rounded-3xl p-4 border border-white/10">
-              <div className="w-16 h-16 bg-[#FD6F2F]/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3">
-                <AcademicCapIcon className="w-8 h-8 text-[#FD6F2F]" />
+              <div className="w-24 h-24 mx-auto mb-3 relative rounded-full overflow-hidden">
+                <Image
+                  src="/images/anasilva.png"
+                  alt="Professora Ana Silva"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <h2 className="text-lg font-bold text-white mb-1">Prof. Ana Silva</h2>
               <p className="text-[#FD6F2F] mb-2">Especialista em Oratória</p>
@@ -33,8 +38,13 @@ export default function Professores() {
             </div>
 
             <div className="text-center backdrop-blur-sm bg-white/5 rounded-3xl p-4 border border-white/10">
-              <div className="w-16 h-16 bg-[#FD6F2F]/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3">
-                <AcademicCapIcon className="w-8 h-8 text-[#FD6F2F]" />
+              <div className="w-24 h-24 mx-auto mb-3 relative rounded-full overflow-hidden">
+                <Image
+                  src="/images/carlossantos.png"
+                  alt="Professor Carlos Santos"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <h2 className="text-lg font-bold text-white mb-1">Prof. Carlos Santos</h2>
               <p className="text-[#FD6F2F] mb-2">Especialista em Expressão</p>
@@ -44,8 +54,13 @@ export default function Professores() {
             </div>
 
             <div className="text-center backdrop-blur-sm bg-white/5 rounded-3xl p-4 border border-white/10">
-              <div className="w-16 h-16 bg-[#FD6F2F]/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3">
-                <AcademicCapIcon className="w-8 h-8 text-[#FD6F2F]" />
+              <div className="w-24 h-24 mx-auto mb-3 relative rounded-full overflow-hidden">
+                <Image
+                  src="/images/mariacosta.png"
+                  alt="Professora Maria Costa"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <h2 className="text-lg font-bold text-white mb-1">Profa. Maria Costa</h2>
               <p className="text-[#FD6F2F] mb-2">Especialista em Digital</p>
