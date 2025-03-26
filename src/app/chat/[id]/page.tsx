@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import { ArrowLeftIcon, PaperAirplaneIcon, PhoneIcon, VideoCameraIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 // Simula mensagens do chat (em um MVP real, isso viria de uma API)
 const initialMessages = [
@@ -27,17 +28,20 @@ const teachers = {
   '1': {
     name: 'Ana Silva',
     specialty: 'Oratória',
-    status: 'Online'
+    status: 'Online',
+    image: '/images/anasilva.png'
   },
   '2': {
     name: 'Carlos Santos',
     specialty: 'Expressão Corporal',
-    status: 'Offline'
+    status: 'Offline',
+    image: '/images/carlossantos.png'
   },
   '3': {
     name: 'Maria Costa',
     specialty: 'Comunicação Digital',
-    status: 'Online'
+    status: 'Online',
+    image: '/images/mariacosta.png'
   }
 };
 
@@ -84,9 +88,19 @@ export default function Chat({ params }: { params: { id: string } }) {
               >
                 <ArrowLeftIcon className="w-5 h-5 text-white" />
               </button>
-              <div>
-                <h2 className="text-white font-medium">{teacher.name}</h2>
-                <p className="text-white/70 text-sm">{teacher.specialty}</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full relative overflow-hidden">
+                  <Image
+                    src={teacher.image}
+                    alt={`Professor(a) ${teacher.name}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-white font-medium">{teacher.name}</h2>
+                  <p className="text-white/70 text-sm">{teacher.specialty}</p>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">

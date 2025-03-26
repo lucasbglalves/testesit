@@ -1,8 +1,9 @@
 'use client';
 
 import Header from '@/components/Header';
-import { BookOpenIcon, ChatBubbleLeftRightIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
+import { BookOpenIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const articles = [
   {
@@ -33,19 +34,22 @@ const teachers = [
     id: 1,
     name: 'Ana Silva',
     specialty: 'Oratória',
-    status: 'Online'
+    status: 'Online',
+    image: '/images/anasilva.png'
   },
   {
     id: 2,
     name: 'Carlos Santos',
     specialty: 'Expressão Corporal',
-    status: 'Offline'
+    status: 'Offline',
+    image: '/images/carlossantos.png'
   },
   {
     id: 3,
     name: 'Maria Costa',
     specialty: 'Comunicação Digital',
-    status: 'Online'
+    status: 'Online',
+    image: '/images/mariacosta.png'
   }
 ];
 
@@ -91,36 +95,39 @@ export default function Dashboard() {
           </div>
 
           {/* Professores Online */}
-          <div>
-            <div className="bg-black/40 p-6 rounded-lg border border-white/10">
-              <h2 className="section-title flex items-center gap-2">
-                <ChatBubbleLeftRightIcon className="w-5 h-5 text-[#FD6F2F]" />
-                Professores
-              </h2>
-              <div className="space-y-3">
-                {teachers.map(teacher => (
-                  <div
-                    key={teacher.id}
-                    onClick={() => router.push(`/chat/${teacher.id}`)}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-black/30 border border-white/10 hover:bg-black/40 transition-all cursor-pointer"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-[#FD6F2F]/20 flex items-center justify-center">
-                      <AcademicCapIcon className="w-5 h-5 text-[#FD6F2F]" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-white font-medium">{teacher.name}</h3>
-                      <p className="text-white/70 text-sm">{teacher.specialty}</p>
-                    </div>
-                    <div className={`px-2 py-1 rounded-full text-xs ${
-                      teacher.status === 'Online' 
-                        ? 'bg-green-500/20 text-green-400'
-                        : 'bg-gray-500/20 text-gray-400'
-                    }`}>
-                      {teacher.status}
-                    </div>
+          <div className="bg-black/40 p-6 rounded-lg border border-white/10">
+            <h2 className="section-title flex items-center gap-2">
+              <ChatBubbleLeftRightIcon className="w-5 h-5 text-[#FD6F2F]" />
+              Professores
+            </h2>
+            <div className="space-y-3">
+              {teachers.map(teacher => (
+                <div
+                  key={teacher.id}
+                  onClick={() => router.push(`/chat/${teacher.id}`)}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-black/30 border border-white/10 hover:bg-black/40 transition-all cursor-pointer"
+                >
+                  <div className="w-10 h-10 rounded-full relative overflow-hidden">
+                    <Image
+                      src={teacher.image}
+                      alt={`Professor(a) ${teacher.name}`}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                ))}
-              </div>
+                  <div className="flex-1">
+                    <h3 className="text-white font-medium">{teacher.name}</h3>
+                    <p className="text-white/70 text-sm">{teacher.specialty}</p>
+                  </div>
+                  <div className={`px-2 py-1 rounded-full text-xs ${
+                    teacher.status === 'Online' 
+                      ? 'bg-green-500/20 text-green-400'
+                      : 'bg-gray-500/20 text-gray-400'
+                  }`}>
+                    {teacher.status}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
