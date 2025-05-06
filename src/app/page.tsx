@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Header from '@/components/Header'
-import { ChatBubbleBottomCenterTextIcon, UserGroupIcon, AcademicCapIcon, ClockIcon } from '@heroicons/react/24/outline'
+import { ChatBubbleBottomCenterTextIcon, CheckIcon } from '@heroicons/react/24/outline'
 
 export default function Home() {
   return (
@@ -51,45 +51,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Pricing Preview Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
-            <h2 className="text-2xl font-semibold text-white mb-3">Como podemos ajudar você?</h2>
+            <h2 className="text-2xl font-semibold text-white mb-3">Planos que cabem no seu bolso</h2>
             <p className="text-white/80 max-w-2xl mx-auto text-sm">
-              Nossa metodologia foi desenvolvida para ajudar você a se comunicar melhor em qualquer situação.
+              Escolha o plano ideal para o seu desenvolvimento e comece sua jornada hoje mesmo.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
-              <div className="icon-container">
-                <AcademicCapIcon />
-              </div>
-              <h3 className="text-base font-semibold text-white mb-2">Metodologia Personalizada</h3>
-              <p className="text-white/70 text-sm">
-                Aulas adaptadas ao seu perfil e objetivos.
-              </p>
+          <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+              <h3 className="text-lg font-semibold text-white mb-2">Básico</h3>
+              <p className="text-2xl font-bold text-white mb-4">R$ 49,90<span className="text-sm font-normal text-white/70">/mês</span></p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  5 cursos básicos
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Certificado
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Suporte por email
+                </li>
+              </ul>
+              <Link 
+                href="/pricing"
+                className="block text-center text-sm text-white/70 hover:text-white transition-colors"
+              >
+                Ver mais detalhes →
+              </Link>
             </div>
 
-            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
-              <div className="icon-container">
-                <UserGroupIcon />
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20 relative">
+              <div className="absolute -top-3 left-0 right-0 mx-auto w-24 rounded-full bg-[#FD6F2F] px-2 py-1 text-xs font-medium text-white text-center">
+                Mais popular
               </div>
-              <h3 className="text-base font-semibold text-white mb-2">Prática em Grupo</h3>
-              <p className="text-white/70 text-sm">
-                Exercícios práticos com outros alunos para desenvolver habilidades sociais.
-              </p>
+              <h3 className="text-lg font-semibold text-white mb-2">Profissional</h3>
+              <p className="text-2xl font-bold text-white mb-4">R$ 89,90<span className="text-sm font-normal text-white/70">/mês</span></p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Todos os cursos
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Mentoria em grupo
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Suporte prioritário
+                </li>
+              </ul>
+              <Link 
+                href="/pricing"
+                className="block text-center text-sm text-white/70 hover:text-white transition-colors"
+              >
+                Ver mais detalhes →
+              </Link>
             </div>
 
-            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-5 border border-white/20">
-              <div className="icon-container">
-                <ClockIcon />
-              </div>
-              <h3 className="text-base font-semibold text-white mb-2">Horários Flexíveis</h3>
-              <p className="text-white/70 text-sm">
-                Agende suas aulas de acordo com sua disponibilidade.
-              </p>
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+              <h3 className="text-lg font-semibold text-white mb-2">Enterprise</h3>
+              <p className="text-2xl font-bold text-white mb-4">Sob consulta</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Soluções personalizadas
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Mentoria individual
+                </li>
+                <li className="flex items-center text-white/70 text-sm">
+                  <CheckIcon className="h-5 w-5 text-[#FD6F2F] mr-2" />
+                  Suporte dedicado
+                </li>
+              </ul>
+              <Link 
+                href="/pricing"
+                className="block text-center text-sm text-white/70 hover:text-white transition-colors"
+              >
+                Ver mais detalhes →
+              </Link>
             </div>
           </div>
         </div>
@@ -110,6 +158,12 @@ export default function Home() {
                   className="glass-button"
                 >
                   Comece Agora
+                </Link>
+                <Link 
+                  href="/pricing" 
+                  className="glass-button"
+                >
+                  Ver Planos
                 </Link>
                 <Link 
                   href="/sobre" 

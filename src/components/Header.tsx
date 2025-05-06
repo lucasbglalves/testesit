@@ -37,8 +37,8 @@ export default function Header() {
             <Link href="/sobre" className="text-white/80 hover:text-white transition-colors">
               Sobre
             </Link>
-            <Link href="/curso" className="text-white/80 hover:text-white transition-colors">
-              Cursos
+            <Link href="/pricing" className="text-white/80 hover:text-white transition-colors">
+              Preços
             </Link>
             <Link href="/professores" className="text-white/80 hover:text-white transition-colors">
               Professores
@@ -90,11 +90,11 @@ export default function Header() {
                 Sobre
               </Link>
               <Link
-                href="/curso"
+                href="/pricing"
                 className="text-white/80 hover:text-white transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Cursos
+                Preços
               </Link>
               <Link
                 href="/professores"
