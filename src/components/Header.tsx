@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,7 +30,14 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-2xl font-bold text-white">
-            Comunique-se
+            <Image
+              src="/images/logocomuniquese.png"
+              alt="Logo Comunique-se"
+              width={160}
+              height={64}
+              style={{ objectFit: 'contain', height: '64px', width: 'auto' }}
+              priority
+            />
           </Link>
           
           {/* Menu Desktop */}

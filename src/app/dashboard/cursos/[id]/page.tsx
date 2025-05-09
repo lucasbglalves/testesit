@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 // Dados mockados do curso
 const courseData = {
   id: 1,
-  title: 'Oratória Avançada',
+  title: 'Linguagem corporal',
   instructor: 'Ana Silva',
   progress: 75,
   modules: [
@@ -108,6 +108,64 @@ Pratique sua apresentação focando apenas nos aspectos não-verbais da comunica
           completed: false
         }
       ]
+    },
+    {
+      id: 3,
+      title: 'Comunicação e Expressão',
+      completed: false,
+      lessons: [
+        {
+          id: 5,
+          title: 'Linguagem Corporal e Emoções',
+          content: `A linguagem corporal expressa emoções de forma inconsciente, revelando sentimentos que podem não ser verbalizados. Gestos, posturas e expressões faciais comunicam estados emocionais, permitindo que os outros percebam a intenção e o interesse. Assim, a interpretação da linguagem corporal pode influenciar a compreensão e a resposta emocional nas interações sociais.
+
+Conflitos internos consomem energia mental e emocional, dificultando a atenção plena e a observação dos outros. Quando estamos imersos em nossos próprios conflitos, tendemos a projetar nossas emoções e percepções, tornando-nos menos receptivos às experiências alheias. Isso resulta em uma visão distorcida dos fenômenos que ocorrem ao nosso redor, limitando nossa empatia e compreensão.
+
+Os elementos principais da Técnica de Alexander incluem o uso correto do centro de gravidade e a conscientização das posturas e hábitos corporais. A técnica visa corrigir malformações físicas e tensões musculares, promovendo harmonia e repouso no corpo. Além disso, enfatiza a aprendizagem do uso adequado do corpo, em vez de apenas realizar exercícios.
+
+Técnica de Alexander: Melhore sua postura e consciência corporal para transmitir confiança e clareza.
+Prática de Movimentos: Realize exercícios de relaxamento e respiração para reduzir a tensão e aumentar a presença.
+Observação da Linguagem Corporal: Treine a percepção das reações do público e ajuste sua comunicação não verbal para engajar melhor a audiência.
+
+A linguagem corporal pode ser lida e interpretada através da observação de gestos, posturas e expressões faciais, que revelam emoções e intenções. É importante considerar o contexto e a cultura, pois diferentes ambientes podem influenciar a interpretação dos sinais. Além disso, a prática e a conscientização ajudam a discernir padrões e significados, permitindo uma compreensão mais profunda das interações humanas.
+
+Princípios da Linguagem Corporal:
+- Exploração dos fundamentos que permitem entender a comunicação não verbal
+- Interpretação de Gestos e Expressões: Análise de como os gestos e expressões faciais refletem emoções e intenções
+- Aplicações Práticas: Técnicas para melhorar a comunicação interpessoal e a expressão corporal, especialmente em contextos como o amor e apresentações
+
+Comunicação Simultânea: A linguagem do corpo transmite múltiplas mensagens ao mesmo tempo, que podem ser analisadas em conjunto para entender a emoção dominante.
+Inconsciente e Consciente: A linguagem corporal reflete tanto emoções conscientes quanto inconscientes, revelando o que a pessoa realmente sente.
+Estrutura e Simplicidade: A linguagem do corpo possui uma estrutura básica que é intuitiva e familiar, permitindo que as pessoas reconheçam e interpretem gestos e posturas facilmente.
+
+Estes princípios ajudam a decifrar a comunicação não verbal nas interações humanas.`,
+          completed: false
+        },
+        {
+          id: 6,
+          title: 'Interpretação e Aplicação Prática',
+          content: `Interpretação de Gestos e Expressões: envolve a análise de como os movimentos corporais e as expressões faciais comunicam emoções e intenções.
+
+Gestos: Os gestos podem ser classificados em diferentes categorias, como gestos emblemáticos (que têm um significado específico, como acenar) e gestos ilustrativos (que acompanham a fala para enfatizar uma ideia). A intensidade e a frequência dos gestos também podem indicar o nível de emoção ou envolvimento da pessoa.
+
+Expressões Faciais: O rosto é um dos principais veículos de comunicação emocional. Expressões como sorrisos, franzir de sobrancelhas e olhares podem transmitir alegria, raiva, surpresa ou tristeza. A microexpressão, que são expressões faciais rápidas e involuntárias, pode revelar sentimentos ocultos.
+
+Postura e Proxêmica: A postura geral de uma pessoa (aberta ou fechada) e a distância em relação aos outros (proxêmica) também são cruciais. Uma postura aberta e uma proximidade adequada podem indicar receptividade e interesse, enquanto uma postura fechada ou distância excessiva podem sinalizar desconforto ou desinteresse.
+
+Esses elementos, quando analisados em conjunto, oferecem uma visão mais clara das emoções e intenções de uma pessoa durante a comunicação.
+
+As Aplicações Práticas da linguagem corporal envolvem a utilização dos princípios e conceitos aprendidos para melhorar a comunicação e as interações interpessoais:
+
+Desenvolvimento de Habilidades de Observação: A prática de observar a linguagem corporal em diferentes contextos ajuda a identificar padrões e a entender melhor as emoções dos outros. Exercícios com amigos ou colegas podem ser realizados para analisar gestos e expressões, promovendo uma maior consciência sobre como a comunicação não verbal afeta as interações.
+
+Expressão Emocional: Aprender a usar a linguagem corporal de forma consciente permite que as pessoas expressem suas emoções de maneira mais autêntica. Isso é especialmente importante em situações como apresentações, onde a confiança e a empatia podem ser transmitidas através de gestos, posturas e expressões faciais adequadas.
+
+Melhoria nas Relações Interpessoais: A aplicação dos conhecimentos sobre linguagem corporal pode fortalecer relacionamentos, pois permite uma comunicação mais clara e eficaz. Ao entender as emoções dos outros e ajustar a própria linguagem corporal, é possível criar um ambiente mais positivo e colaborativo.
+
+Essas aplicações práticas visam não apenas melhorar a comunicação, mas também aumentar a empatia e a conexão entre as pessoas.`,
+          completed: false
+        }
+      ]
     }
   ]
 };
@@ -151,7 +209,7 @@ export default function CoursePage() {
             Dashboard
           </button>
           <ChevronRightIcon className="w-4 h-4" />
-          <span className="text-white">Oratória Avançada</span>
+          <span className="text-white">Linguagem corporal</span>
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">

@@ -64,27 +64,27 @@ const teachers = [
 const courses = [
   {
     id: 1,
-    title: 'Oratória Avançada',
+    title: 'Linguagem corporal',
     progress: 75,
     nextClass: '15/03 - 19:00',
     instructor: 'Ana Silva',
-    image: '/images/course1.jpg'
+    image: '/images/linguagemcorporal.png'
   },
   {
     id: 2,
-    title: 'Comunicação Corporativa',
+    title: 'Comunicação Organizacional',
     progress: 30,
     nextClass: '16/03 - 20:00',
     instructor: 'Carlos Santos',
-    image: '/images/course2.jpg'
+    image: '/images/comunicacaoorganizacional.png'
   },
   {
     id: 3,
-    title: 'Apresentações Impactantes',
+    title: 'Comunicação Corporativa',
     progress: 90,
     nextClass: '17/03 - 18:00',
     instructor: 'Maria Costa',
-    image: '/images/course3.jpg'
+    image: '/images/comunicacaocorporativa.png'
   }
 ];
 
