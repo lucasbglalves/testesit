@@ -64,7 +64,7 @@ const teachers = [
 const courses = [
   {
     id: 1,
-    title: 'Linguagem corporal',
+    title: 'Linguagem Corporal',
     progress: 75,
     nextClass: '15/03 - 19:00',
     instructor: 'Ana Silva',
