@@ -9,115 +9,25 @@ import {
   ChevronRightIcon,
   ChevronDownIcon
 } from '@heroicons/react/24/outline';
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
-// Dados mockados do curso
-const courseData = {
-  id: 1,
-  title: 'Linguagem corporal',
-  instructor: 'Ana Silva',
-  progress: 75,
-  modules: [
-    {
-      id: 1,
-      title: 'Fundamentos da Oratória',
-      completed: true,
-      lessons: [
-        {
-          id: 1,
-          title: 'Introdução à Oratória',
-          content: `A oratória é a arte de falar em público de forma clara, objetiva e impactante. Nesta primeira aula, vamos explorar os princípios fundamentais que todo orador deve conhecer.
-
-Principais pontos abordados:
-- A importância da comunicação efetiva
-- Elementos básicos da oratória
-- Superando o medo de falar em público
-- Técnicas de respiração e controle vocal
-
-Exercício prático:
-1. Grave um vídeo de 2 minutos apresentando-se
-2. Analise sua postura, voz e gestos
-3. Identifique pontos de melhoria`,
-          completed: true
-        },
-        {
-          id: 2,
-          title: 'Estrutura de uma Apresentação',
-          content: `Uma boa apresentação precisa ter uma estrutura clara e coesa. Vamos aprender como organizar suas ideias de forma impactante.
-
-Estrutura básica:
-1. Introdução (15% do tempo)
-   - Capturar a atenção
-   - Apresentar o tema
-   - Estabelecer credibilidade
-
-2. Desenvolvimento (70% do tempo)
-   - Argumentos principais
-   - Exemplos e dados
-   - Transições suaves
-
-3. Conclusão (15% do tempo)
-   - Resumo dos pontos principais
-   - Call to action
-   - Encerramento memorável
-
-Exercício:
-Crie uma estrutura para uma apresentação de 10 minutos sobre um tema de sua escolha.`,
-          completed: true
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Técnicas Avançadas',
-      completed: false,
-      lessons: [
-        {
-          id: 3,
-          title: 'Storytelling e Persuasão',
-          content: `A arte de contar histórias é uma das ferramentas mais poderosas para engajar sua audiência.
-
-Elementos do Storytelling:
-- Personagem principal
-- Conflito ou desafio
-- Jornada de transformação
-- Resolução
-
-Técnicas de Persuasão:
-1. Ethos (Credibilidade)
-2. Pathos (Emoção)
-3. Logos (Lógica)
-
-Exercício:
-Desenvolva uma história pessoal que ilustre um ponto importante da sua apresentação.`,
-          completed: false
-        },
-        {
-          id: 4,
-          title: 'Gestos e Linguagem Corporal',
-          content: `Sua linguagem corporal pode reforçar ou contradizer suas palavras. Aprenda a usar seu corpo para comunicar com mais efetividade.
-
-Pontos principais:
-- Postura e posicionamento
-- Gestos e movimentos das mãos
-- Expressões faciais
-- Movimentação no palco
-
-Exercício:
-Pratique sua apresentação focando apenas nos aspectos não-verbais da comunicação.`,
-          completed: false
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Comunicação e Expressão',
-      completed: false,
-      lessons: [
-        {
-          id: 5,
-          title: 'Linguagem Corporal e Emoções',
-          content: `A linguagem corporal expressa emoções de forma inconsciente, revelando sentimentos que podem não ser verbalizados. Gestos, posturas e expressões faciais comunicam estados emocionais, permitindo que os outros percebam a intenção e o interesse. Assim, a interpretação da linguagem corporal pode influenciar a compreensão e a resposta emocional nas interações sociais.
+// Dados mockados dos cursos
+const coursesData = [
+  {
+    id: 1,
+    title: 'Linguagem Corporal',
+    instructor: 'Ana Silva',
+    progress: 75,
+    modules: [
+      {
+        id: 3,
+        title: 'Comunicação e Expressão',
+        completed: false,
+        lessons: [
+          {
+            id: 5,
+            title: 'Linguagem Corporal e Emoções',
+            content: `A linguagem corporal expressa emoções de forma inconsciente, revelando sentimentos que podem não ser verbalizados. Gestos, posturas e expressões faciais comunicam estados emocionais, permitindo que os outros percebam a intenção e o interesse. Assim, a interpretação da linguagem corporal pode influenciar a compreensão e a resposta emocional nas interações sociais.
 
 Conflitos internos consomem energia mental e emocional, dificultando a atenção plena e a observação dos outros. Quando estamos imersos em nossos próprios conflitos, tendemos a projetar nossas emoções e percepções, tornando-nos menos receptivos às experiências alheias. Isso resulta em uma visão distorcida dos fenômenos que ocorrem ao nosso redor, limitando nossa empatia e compreensão.
 
@@ -139,12 +49,12 @@ Inconsciente e Consciente: A linguagem corporal reflete tanto emoções conscien
 Estrutura e Simplicidade: A linguagem do corpo possui uma estrutura básica que é intuitiva e familiar, permitindo que as pessoas reconheçam e interpretem gestos e posturas facilmente.
 
 Estes princípios ajudam a decifrar a comunicação não verbal nas interações humanas.`,
-          completed: false
-        },
-        {
-          id: 6,
-          title: 'Interpretação e Aplicação Prática',
-          content: `Interpretação de Gestos e Expressões: envolve a análise de como os movimentos corporais e as expressões faciais comunicam emoções e intenções.
+            completed: false
+          },
+          {
+            id: 6,
+            title: 'Interpretação e Aplicação Prática',
+            content: `Interpretação de Gestos e Expressões: envolve a análise de como os movimentos corporais e as expressões faciais comunicam emoções e intenções.
 
 Gestos: Os gestos podem ser classificados em diferentes categorias, como gestos emblemáticos (que têm um significado específico, como acenar) e gestos ilustrativos (que acompanham a fala para enfatizar uma ideia). A intensidade e a frequência dos gestos também podem indicar o nível de emoção ou envolvimento da pessoa.
 
@@ -163,17 +73,113 @@ Expressão Emocional: Aprender a usar a linguagem corporal de forma consciente p
 Melhoria nas Relações Interpessoais: A aplicação dos conhecimentos sobre linguagem corporal pode fortalecer relacionamentos, pois permite uma comunicação mais clara e eficaz. Ao entender as emoções dos outros e ajustar a própria linguagem corporal, é possível criar um ambiente mais positivo e colaborativo.
 
 Essas aplicações práticas visam não apenas melhorar a comunicação, mas também aumentar a empatia e a conexão entre as pessoas.`,
-          completed: false
-        }
-      ]
-    }
-  ]
-};
+            completed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Comunicação Organizacional',
+    instructor: 'Carlos Santos',
+    progress: 30,
+    modules: [
+      {
+        id: 1,
+        title: 'A comunicação no contexto organizacional',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'A comunicação no contexto organizacional',
+            content: `A comunicação organizacional é entendida como o processo que viabiliza o fluxo de informações dentro das instituições. Não se restringe a simples trocas de mensagens, mas constitui um elo fundamental para o funcionamento e a sobrevivência das organizações. Sua função vai além de informar: ela motiva, orienta comportamentos e influencia a cultura institucional.
+Dentro do ambiente organizacional, a comunicação pode ocorrer de forma formal ou informal. A comunicação formal segue fluxos hierárquicos e procedimentos oficiais, enquanto a informal surge de maneira espontânea entre os colaboradores. Ambas exercem papéis importantes no desenvolvimento e no clima organizacional.
+
+Comunicação e cultura organizacional
+A comunicação é um dos pilares da cultura organizacional, uma vez que transmite os valores, crenças e normas compartilhados pelos membros da organização. Através da linguagem e dos símbolos comunicacionais, os indivíduos internalizam a identidade e os objetivos institucionais.
+
+Tipos de comunicação
+A comunicação organizacional pode ser classificada de diversas formas. Uma das classificações mais comuns envolve: comunicação interna (voltada para o público interno da empresa) e comunicação externa (focada em públicos externos como clientes, parceiros e sociedade).
+A comunicação interna é essencial para promover o engajamento dos colaboradores e fortalecer o senso de pertencimento. Ela pode se dar por canais diversos, como murais, jornais internos, reuniões, e-mails e redes corporativas. Já a comunicação externa é estratégica para consolidar a imagem institucional e deve ser gerenciada com cuidado, principalmente em tempos de crise.
+A comunicação como ferramenta de gestão
+Mais do que uma função operacional, a comunicação deve ser vista como uma ferramenta de gestão. Líderes e gestores precisam dominar competências comunicacionais para conduzir equipes, tomar decisões e gerir mudanças. A comunicação eficaz permite alinhar objetivos, reduzir conflitos e fomentar um ambiente colaborativo.
+ Barreiras à comunicação
+As barreiras à comunicação podem comprometer o desempenho organizacional. Entre os obstáculos mais comuns estão o ruído, a falta de feedback, interpretações equivocadas, falhas nos canais e problemas culturais. Superar essas barreiras requer investimento em políticas de comunicação claras, capacitação e abertura ao diálogo.
+
+6. Planejamento da comunicação organizacional
+Um planejamento adequado da comunicação organizacional inclui diagnóstico, definição de objetivos, identificação de públicos, escolha de canais, cronograma e avaliação de resultados. Esse processo torna a comunicação mais estratégica e alinhada às metas institucionais.
+
+Considerações finais
+A comunicação organizacional é um elemento vital para o sucesso das empresas. Ela impacta diretamente a produtividade, o clima interno, a imagem pública e a competitividade. Portanto, deve ser gerenciada com seriedade, por meio de práticas que promovam a clareza, a escuta e o alinhamento institucional.
+
+Referências
+O conteúdo deste resumo foi parafraseado a partir do documento:
+FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
+            completed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Comunicação Corporativa',
+    instructor: 'Maria Costa',
+    progress: 90,
+    modules: [
+      {
+        id: 1,
+        title: 'Introdução à Comunicação Corporativa',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'O que é Comunicação Corporativa?',
+            content: 'A comunicação corporativa envolve todas as ações de comunicação realizadas por uma empresa para construir e manter sua imagem, tanto interna quanto externamente.'
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: 'Canais de Comunicação',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'Canais Internos e Externos',
+            content: 'Conheça os principais canais utilizados para comunicação com colaboradores, clientes e o público em geral.'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: 'Gestão de Crises',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'Como Gerenciar uma Crise de Imagem',
+            content: 'Saiba como agir em situações de crise e proteger a reputação da empresa.'
+          }
+        ]
+      }
+    ]
+  }
+];
 
 export default function CoursePage() {
+  const params = useParams();
+  const courseId = Number(params.id);
+  const courseData = coursesData.find(c => c.id === courseId);
+
   const [expandedModule, setExpandedModule] = useState<number | null>(1);
   const [selectedLesson, setSelectedLesson] = useState<number>(1);
   const router = useRouter();
+
+  if (!courseData) {
+    return <div className="text-white text-center py-12">Curso não encontrado.</div>;
+  }
 
   const handleModuleClick = (moduleId: number) => {
     setExpandedModule(expandedModule === moduleId ? null : moduleId);
@@ -209,7 +215,7 @@ export default function CoursePage() {
             Dashboard
           </button>
           <ChevronRightIcon className="w-4 h-4" />
-          <span className="text-white">Linguagem corporal</span>
+          <span className="text-white">{courseData.title}</span>
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">

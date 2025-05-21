@@ -22,11 +22,13 @@ export default function Home() {
           <div className="space-y-5">
             <h1 className="text-3xl md:text-4xl font-semibold leading-tight">
               <span className="text-white">
-                Desenvolva sua comunicação de forma natural e efetiva
+                Desbloqueie seu potencial de comunicação com confiança
               </span>
             </h1>
             <p className="text-base text-white/80">
-              Aprenda técnicas de comunicação com especialistas e transforme sua maneira de se expressar.
+              Na Comunique-se, entendemos que comunicar-se bem não é um dom é uma habilidade. Se você sente dificuldades em se expressar, seja por timidez, ansiedade social ou insegurança, nós estamos aqui para ajudar.
+              Nosso compromisso é oferecer conteúdos acessíveis, práticos e baseados em vivências reais para quem deseja se comunicar melhor no trabalho, em casa ou em qualquer ambiente. Com artigos criados para orientar, inspirar e transformar, somos um ponto de apoio confiável para quem busca evoluir pessoal e profissionalmente por meio da comunicação.
+              Seja bem-vindo ao espaço onde sua voz ganha força.
             </p>
             <div className="flex gap-3">
               <Link 

@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header'
 import { AcademicCapIcon, UserGroupIcon, ChartBarIcon } from '@heroicons/react/24/outline'
+import CarouselInfo from '@/components/CarouselInfo'
 
 export default function Sobre() {
   return (
@@ -19,35 +20,52 @@ export default function Sobre() {
           <h1 className="text-3xl font-bold text-white mb-6 text-center">
             Sobre Nós
           </h1>
+          <div className="flex flex-col md:flex-row gap-4 mb-6 justify-center items-center">
+            <div className="w-full md:w-1/2 h-40 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden border border-white/20">
+              <img src="/images/sobre1.jpg" alt="Sobre 1" className="object-cover w-full h-full" />
+            </div>
+            <div className="w-full md:w-1/2 h-40 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden border border-white/20">
+              <img src="/images/sobre2.jpg" alt="Sobre 2" className="object-cover w-full h-full" />
+            </div>
+          </div>
           
           <div className="backdrop-blur-sm bg-white/5 rounded-3xl p-4 border border-white/10 space-y-4">
             <div>
               <p className="text-white/80">
-                A Comunique-se nasceu da paixão por transformar vidas através da comunicação efetiva. 
-                Nossa missão é capacitar pessoas a se expressarem com confiança e clareza.
+                A Comunique-se nasceu com uma missão simples e poderosa: ajudar pessoas a desenvolverem sua comunicação pessoal e profissional de forma prática, assertiva e empática. Sabemos que muitas pessoas enfrentam obstáculos invisíveis, como a timidez, a introversão ou a ansiedade social, que dificultam sua capacidade de se expressar com clareza e confiança. Nosso papel é mostrar que isso pode ser superado.
               </p>
             </div>
             
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Nossa História</h2>
               <p className="text-white/80">
-                Fundada em 2024, nossa plataforma já ajudou centenas de pessoas a superarem seus desafios 
-                na comunicação. Hoje contamos com uma equipe diversificada de especialistas.
+                Nossa plataforma é gratuita e pensada para todos que desejam melhorar suas habilidades de expressão. Além disso, oferecemos conteúdos exclusivos para profissionais que dependem de uma comunicação eficaz no dia a dia, como executivos, gestores, médicos, advogados, consultores e vendedores.
               </p>
             </div>
-            
+
             <div>
-              <h2 className="text-xl font-bold text-white mb-2">Nossos Valores</h2>
-              <ul className="grid grid-cols-2 gap-2 text-white/80">
-                <li className="flex items-center">• Excelência no ensino</li>
-                <li className="flex items-center">• Compromisso com resultados</li>
-                <li className="flex items-center">• Inovação constante</li>
-                <li className="flex items-center">• Atendimento personalizado</li>
+              <p className="text-white/80">
+                Acreditamos que comunicar-se bem é transformador. E é exatamente isso que oferecemos: ferramentas e conhecimento para transformar relações, influenciar decisões e gerar confiança em qualquer conversa.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-bold text-white mb-2">Nossa proposta é simples:</h2>
+              <ul className="space-y-2 text-white/80">
+                <li className="flex items-center">• Conteúdo acessível e de fácil compreensão</li>
+                <li className="flex items-center">• Leitura contabilizada para acompanhar seu progresso</li>
               </ul>
+            </div>
+
+            <div>
+              <p className="text-white/80">
+                Comunique-se é mais que uma plataforma é uma jornada rumo à sua melhor versão comunicativa. Seja para vencer debates em família ou liderar reuniões com autoridade, aqui você encontra o suporte que faltava.
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      <CarouselInfo />
     </main>
   )
 } 
