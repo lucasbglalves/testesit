@@ -12,7 +12,7 @@ import {
 import { useRouter, useParams } from 'next/navigation';
 
 // Dados mockados dos cursos
-const coursesData = [
+const initialCoursesData = [
   {
     id: 1,
     title: 'Linguagem Corporal',
@@ -130,37 +130,66 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
     modules: [
       {
         id: 1,
-        title: 'Introdução à Comunicação Corporativa',
+        title: 'Fundamentos da Comunicação Interpessoal e Corporativa',
         completed: false,
         lessons: [
           {
             id: 1,
-            title: 'O que é Comunicação Corporativa?',
-            content: 'A comunicação corporativa envolve todas as ações de comunicação realizadas por uma empresa para construir e manter sua imagem, tanto interna quanto externamente.'
+            title: 'Fundamentos da Comunicação Interpessoal e Corporativa',
+            content: 'A comunicação é essencial para o funcionamento eficaz das organizações. Muitas falhas de entendimento ocorrem não por falta de vocabulário, mas por bloqueios emocionais como medo, ciúmes ou ressentimento. A base de toda comunicação bem-sucedida está no entendimento do significado e no processo de codificação e decodificação da mensagem. O emissor deve adaptar sua linguagem ao repertório do receptor para evitar ruídos e interpretações equivocadas. Segundo o material da LCN Gestão (2016), comunicar não é apenas transmitir informações, mas garantir que o conteúdo seja compreendido de forma eficaz.',
+            completed: false
           }
         ]
       },
       {
         id: 2,
-        title: 'Canais de Comunicação',
+        title: 'Barreiras e Ruídos na Comunicação Organizacional',
         completed: false,
         lessons: [
           {
             id: 1,
-            title: 'Canais Internos e Externos',
-            content: 'Conheça os principais canais utilizados para comunicação com colaboradores, clientes e o público em geral.'
+            title: 'Barreiras e Ruídos na Comunicação Organizacional',
+            content: 'As falhas na comunicação têm origem quando o emissor considera o receptor como um agente passivo. As diferenças de experiências, cultura, temperamento e percepção afetam a interpretação da mensagem. Os ruídos mais comuns incluem: excesso de dados, falta de liderança, cultura organizacional fechada, e baixa empatia. Emoções fortes agem como ruídos, distorcendo o significado. É vital reconhecer que tanto emissor quanto receptor têm responsabilidades compartilhadas no processo comunicacional.',
+            completed: false
           }
         ]
       },
       {
         id: 3,
-        title: 'Gestão de Crises',
+        title: 'Confiança, Relações Humanas e Intenção Comunicacional',
         completed: false,
         lessons: [
           {
             id: 1,
-            title: 'Como Gerenciar uma Crise de Imagem',
-            content: 'Saiba como agir em situações de crise e proteger a reputação da empresa.'
+            title: 'Confiança, Relações Humanas e Intenção Comunicacional',
+            content: 'Relações humanas moldam a comunicação. Onde há confiança, há mais abertura e compreensão. Onde há desconfiança, a comunicação tende ao fracasso, mesmo com palavras bem escolhidas. É essencial que o emissor compreenda como é percebido pelo receptor, tanto em termos de significado total (quem é) quanto de intenção específica (o que pretende). A comunicação corporativa deve partir da ação coerente, pois atitudes falam mais alto que palavras. Relações são construídas por meio da empatia, escuta ativa e intenção clara.\n\nOs Três Componentes da Mensagem: Fatos, Sentimentos e Propósitos\nToda mensagem codificada possui três elementos: fatos objetivos (dados e informações), sentimentos (reações emocionais) e propósitos (intenções do emissor). O bom comunicador deve ser preciso, breve e claro com os fatos; demonstrar empatia e respeitar os sentimentos alheios; e deixar claro seu propósito. Compreender e equilibrar esses três aspectos reduz conflitos e aumenta a efetividade da comunicação. Ao integrar sentimentos e intenções aos fatos, a comunicação ganha humanidade e direção.',
+            completed: false
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: 'O Papel da Liderança e a Alta Direção na Comunicação',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'O Papel da Liderança e a Alta Direção na Comunicação',
+            content: 'A alta direção tem papel central na comunicação corporativa. Ela deve garantir fluidez nos fluxos de informação, coerência entre discurso e prática e sinceridade na partilha de dados. A comunicação eficaz envolve adaptação ao ponto de vista do receptor, transmissão dos conteúdos em pequenas doses, e abertura para feedback e participação ativa. O líder deve agir como facilitador do diálogo, criando espaços de escuta e expressão.',
+            completed: false
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: 'Competências do Comunicador Eficaz e Boas Práticas',
+        completed: false,
+        lessons: [
+          {
+            id: 1,
+            title: 'Competências do Comunicador Eficaz e Boas Práticas',
+            content: 'O comunicador eficaz é um bom ouvinte, empático, aberto a críticas construtivas e preparado para dialogar. Deve confirmar a compreensão da mensagem, ser assertivo e estimular a expressão do outro. É fundamental buscar feedbacks, adequar a linguagem à audiência e praticar a escuta ativa. A melhoria contínua das competências comunicacionais é um diferencial competitivo tanto para o profissional quanto para a organização.\n\nReferência:\nCASTRO, Luciano. Comunicação Empresarial. LCN Gestão, 2016. Disponível em: https://www.lcngestao.com.br',
+            completed: false
           }
         ]
       }
@@ -171,10 +200,14 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
 export default function CoursePage() {
   const params = useParams();
   const courseId = Number(params.id);
+
+  // Usar useState para gerenciar os dados do curso e permitir atualizações
+  const [coursesData, setCoursesData] = useState(initialCoursesData);
+
   const courseData = coursesData.find(c => c.id === courseId);
 
-  const [expandedModule, setExpandedModule] = useState<number | null>(1);
-  const [selectedLesson, setSelectedLesson] = useState<number>(1);
+  const [expandedModule, setExpandedModule] = useState<number | null>(courseData?.modules[0]?.id || null);
+  const [selectedLesson, setSelectedLesson] = useState<number>(courseData?.modules[0]?.lessons[0]?.id || 1);
   const router = useRouter();
 
   if (!courseData) {
@@ -183,10 +216,40 @@ export default function CoursePage() {
 
   const handleModuleClick = (moduleId: number) => {
     setExpandedModule(expandedModule === moduleId ? null : moduleId);
+    // Se o módulo foi expandido, selecione a primeira lição dele
+    if (expandedModule !== moduleId) {
+      const moduleToExpand = courseData?.modules.find(m => m.id === moduleId);
+      if (moduleToExpand && moduleToExpand.lessons.length > 0) {
+        setSelectedLesson(moduleToExpand.lessons[0].id);
+      }
+    }
   };
 
   const handleLessonClick = (lessonId: number) => {
     setSelectedLesson(lessonId);
+    
+    // Marcar a lição como concluída no estado local
+    setCoursesData(prevCoursesData => {
+      return prevCoursesData.map(course => {
+        if (course.id === courseId) {
+          return {
+            ...course,
+            modules: course.modules.map(module => {
+              return {
+                ...module,
+                lessons: module.lessons.map(lesson => {
+                  if (lesson.id === lessonId) {
+                    return { ...lesson, completed: true };
+                  }
+                  return lesson;
+                })
+              };
+            })
+          };
+        }
+        return course;
+      });
+    });
   };
 
   const getLessonContent = () => {
@@ -197,7 +260,71 @@ export default function CoursePage() {
     return null;
   };
 
+  // Função para encontrar a lição atual e seu índice
+  const findCurrentLessonInfo = () => {
+    let currentModuleIndex = -1;
+    let currentLessonIndex = -1;
+
+    for (let i = 0; i < courseData.modules.length; i++) {
+      const module = courseData.modules[i];
+      const lessonIndex = module.lessons.findIndex(l => l.id === selectedLesson);
+      if (lessonIndex !== -1) {
+        currentModuleIndex = i;
+        currentLessonIndex = lessonIndex;
+        return { module, lessonIndex, currentModuleIndex };
+      }
+    }
+    return null;
+  };
+
+  const currentLessonInfo = findCurrentLessonInfo();
+  const currentModule = currentLessonInfo?.module;
+  const currentLessonIndex = currentLessonInfo?.lessonIndex;
+  const currentModuleIndex = currentLessonInfo?.currentModuleIndex;
+
+  // Lógica para navegar para a próxima aula
+  const goToNextLesson = () => {
+    if (!currentModule || currentLessonIndex === undefined || currentModuleIndex === undefined) return;
+
+    // Verifica se há uma próxima lição no módulo atual
+    if (currentLessonIndex < currentModule.lessons.length - 1) {
+      setSelectedLesson(currentModule.lessons[currentLessonIndex + 1].id);
+    } else {
+      // Se não houver próxima lição no módulo atual, procura o próximo módulo
+      if (currentModuleIndex < courseData.modules.length - 1) {
+        const nextModule = courseData.modules[currentModuleIndex + 1];
+        if (nextModule.lessons.length > 0) {
+          setSelectedLesson(nextModule.lessons[0].id);
+          setExpandedModule(nextModule.id); // Expande o próximo módulo
+        }
+      }
+    }
+  };
+
+  // Lógica para navegar para a aula anterior
+  const goToPreviousLesson = () => {
+    if (!currentModule || currentLessonIndex === undefined || currentModuleIndex === undefined) return;
+
+    // Verifica se há uma lição anterior no módulo atual
+    if (currentLessonIndex > 0) {
+      setSelectedLesson(currentModule.lessons[currentLessonIndex - 1].id);
+    } else {
+      // Se não houver lição anterior no módulo atual, procura o módulo anterior
+      if (currentModuleIndex > 0) {
+        const previousModule = courseData.modules[currentModuleIndex - 1];
+        if (previousModule.lessons.length > 0) {
+          setSelectedLesson(previousModule.lessons[previousModule.lessons.length - 1].id);
+          setExpandedModule(previousModule.id); // Expande o módulo anterior
+        }
+      }
+    }
+  };
+
   const currentLesson = getLessonContent();
+
+  // Determina se os botões de navegação devem estar desabilitados
+  const isFirstLesson = currentModuleIndex === 0 && currentLessonIndex === 0;
+  const isLastLesson = currentModuleIndex === courseData.modules.length - 1 && currentLessonIndex === (currentModule?.lessons.length ?? 0) - 1;
 
   return (
     <main className="page-content">
@@ -218,7 +345,7 @@ export default function CoursePage() {
           <span className="text-white">{courseData.title}</span>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Sidebar com módulos */}
           <div className="md:col-span-1">
             <div className="bg-black/40 rounded-lg border border-white/10 p-4">
@@ -288,27 +415,24 @@ export default function CoursePage() {
                       className="px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
                       onClick={() => {
                         // Marcar aula como concluída
-                        console.log('Marcar como concluída');
+                        // A marcação já é feita no handleLessonClick ao selecionar a aula
+                        // console.log('Marcar como concluída'); // Remover log
                       }}
                     >
                       Marcar como concluída
                     </button>
                     <div className="flex gap-2">
                       <button
-                        className="px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
-                        onClick={() => {
-                          // Navegar para aula anterior
-                          console.log('Aula anterior');
-                        }}
+                        className="px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={goToPreviousLesson}
+                        disabled={isFirstLesson}
                       >
                         Aula anterior
                       </button>
                       <button
-                        className="px-4 py-2 rounded-lg bg-[#FD6F2F] text-white hover:bg-[#FD6F2F]/90 transition-colors"
-                        onClick={() => {
-                          // Navegar para próxima aula
-                          console.log('Próxima aula');
-                        }}
+                        className="px-4 py-2 rounded-lg bg-[#FD6F2F] text-white hover:bg-[#FD6F2F]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={goToNextLesson}
+                        disabled={isLastLesson}
                       >
                         Próxima aula
                       </button>
