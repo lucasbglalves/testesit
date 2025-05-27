@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="backdrop-blur-md bg-[#1F526B]/80 border-t border-white/10">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-row justify-between items-start w-full gap-8">
+        <div className="flex flex-row justify-between items-start w-full gap-8 mt-10">
           {/* Logo e Descrição */}
           <div className="flex flex-col items-center justify-end text-center w-full max-w-xs">
             <Link href="/" className="inline-block mb-2">
@@ -106,7 +106,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-white/10 text-center">
-          <p className="text-white/60 text-sm">
+          <p className="text-white/60 text-sm my-4">
             © {new Date().getFullYear()} Comunique-se. Todos os direitos reservados.
           </p>
         </div>
