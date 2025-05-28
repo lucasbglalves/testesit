@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import Header from '@/components/Header'
-import { ChatBubbleBottomCenterTextIcon, CheckIcon } from '@heroicons/react/24/outline'
+import { ChatBubbleBottomCenterTextIcon, CheckIcon, UserGroupIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -17,37 +18,78 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-12 md:py-20">
+      <section className="container mx-auto px-4 py-8 md:py-20">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-5">
-            <h1 className="text-3xl md:text-4xl font-semibold leading-tight">
-              <span className="text-white">
-                Desbloqueie seu potencial de comunicação com confiança
-              </span>
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Transforme sua comunicação com a Comunique-se
             </h1>
-            <p className="text-base text-white/80">
-              Na Comunique-se, entendemos que comunicar-se bem não é um dom é uma habilidade. Se você sente dificuldades em se expressar, seja por timidez, ansiedade social ou insegurança, nós estamos aqui para ajudar.
-              Nosso compromisso é oferecer conteúdos acessíveis, práticos e baseados em vivências reais para quem deseja se comunicar melhor no trabalho, em casa ou em qualquer ambiente. Com artigos criados para orientar, inspirar e transformar, somos um ponto de apoio confiável para quem busca evoluir pessoal e profissionalmente por meio da comunicação.
-              Seja bem-vindo ao espaço onde sua voz ganha força.
+            <p className="text-white/80 text-base md:text-lg mb-8">
+              Aprenda técnicas de oratória, expressão corporal e comunicação digital com os melhores profissionais do mercado.
             </p>
-            <div className="flex gap-3">
-              <Link 
-                href="/cadastro"
-                className="glass-button"
-              >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <Link href="/cadastro" className="glass-button">
                 Comece Agora
               </Link>
               <Link 
-                href="/sobre"
-                className="px-5 py-2 rounded-md text-white border border-white/30 hover:bg-white/10 transition-all duration-200"
+                href="/sobre" 
+                className="px-5 py-2 rounded-md text-white border border-white/30 hover:bg-white/10 transition-all duration-200 text-center"
               >
                 Saiba Mais
               </Link>
             </div>
           </div>
-          <div className="backdrop-blur-sm bg-white/10 rounded-lg aspect-video relative overflow-hidden border border-white/20 hidden md:block">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <ChatBubbleBottomCenterTextIcon className="w-20 h-20 text-[#FD6F2F]/30" />
+          <div className="hidden md:block">
+            <Image
+              src="/images/hero-image.png"
+              alt="Comunicação efetiva"
+              width={600}
+              height={400}
+              className="rounded-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">Por que escolher a Comunique-se?</h2>
+            <p className="text-white/80 max-w-2xl mx-auto text-sm md:text-base">
+              Nossa metodologia única combina teoria e prática para garantir seu desenvolvimento.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+              <div className="icon-container">
+                <ChatBubbleBottomCenterTextIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Oratória</h3>
+              <p className="text-white/70 text-sm">
+                Aprenda a falar em público com confiança e impacto.
+              </p>
+            </div>
+
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+              <div className="icon-container">
+                <UserGroupIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Expressão Corporal</h3>
+              <p className="text-white/70 text-sm">
+                Domine a linguagem não-verbal para uma comunicação mais efetiva.
+              </p>
+            </div>
+
+            <div className="backdrop-blur-sm bg-white/10 rounded-lg p-6 border border-white/20">
+              <div className="icon-container">
+                <AcademicCapIcon className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">Mentoria</h3>
+              <p className="text-white/70 text-sm">
+                Receba feedback personalizado dos nossos especialistas.
+              </p>
             </div>
           </div>
         </div>
