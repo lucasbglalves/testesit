@@ -75,7 +75,7 @@ export default function Header() {
 
           {/* Menu Mobile */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -88,32 +88,32 @@ export default function Header() {
 
         {/* Menu Mobile Dropdown */}
         {isMenuOpen && (
-          <div className="md:hidden py-4">
-            <nav className="flex flex-col gap-4">
+          <div className="md:hidden py-4 border-t border-white/10">
+            <nav className="flex flex-col gap-4 px-4">
               <Link
                 href="/sobre"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sobre
               </Link>
               <Link
                 href="/pricing"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Preços
               </Link>
               <Link
                 href="/professores"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Professores
               </Link>
               <Link
                 href="/contato"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/80 hover:text-white transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contato
@@ -122,7 +122,7 @@ export default function Header() {
                 <>
                   <Link
                     href="/dashboard"
-                    className="text-[#FD6F2F] hover:text-[#e65a1a] transition-colors"
+                    className="text-[#FD6F2F] hover:text-[#e65a1a] transition-colors py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Dashboard
@@ -132,7 +132,7 @@ export default function Header() {
                       handleLogout()
                       setIsMenuOpen(false)
                     }}
-                    className="glass-button"
+                    className="glass-button w-full text-center"
                   >
                     Sair
                   </button>
@@ -140,7 +140,7 @@ export default function Header() {
               ) : (
                 <Link
                   href="/login"
-                  className="glass-button"
+                  className="glass-button w-full text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Entrar

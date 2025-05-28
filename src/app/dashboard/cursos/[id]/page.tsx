@@ -336,7 +336,7 @@ export default function CoursePage() {
 
       <Header />
 
-      <div className="container px-4 py-12">
+      <div className="container py-12">
         <div className="flex items-center gap-2 text-white/60 mb-6">
           <button onClick={() => router.push('/dashboard')} className="hover:text-white transition-colors">
             Dashboard
@@ -345,7 +345,7 @@ export default function CoursePage() {
           <span className="text-white">{courseData.title}</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-4 gap-6">
           {/* Sidebar com módulos */}
           <div className="md:col-span-1">
             <div className="bg-black/40 rounded-lg border border-white/10 p-4">
