@@ -22,10 +22,14 @@ export default function Sobre() {
           </h1>
           <div className="flex flex-col md:flex-row gap-4 mb-6 justify-center items-center">
             <div className="w-full md:w-1/2 h-40 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden border border-white/20">
-              <img src="/images/sobre1.jpg" alt="Sobre 1" className="object-cover w-full h-full" />
+              <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold">
+                IMAGEM 1
+              </div>
             </div>
             <div className="w-full md:w-1/2 h-40 bg-white/10 rounded-xl flex items-center justify-center overflow-hidden border border-white/20">
-              <img src="/images/sobre2.jpg" alt="Sobre 2" className="object-cover w-full h-full" />
+              <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold">
+                IMAGEM 2
+              </div>
             </div>
           </div>
           

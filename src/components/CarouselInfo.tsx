@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const slides = [
   {
-    image: '/images/carrossel1.jpg',
+    image: '/images/placeholder1.png',
     title: 'Conteúdo Exclusivo',
     text: 'Acesse materiais desenvolvidos por especialistas em comunicação, com dicas práticas para o seu dia a dia.'
   },
   {
-    image: '/images/carrossel2.jpg',
+    image: '/images/placeholder2.png',
     title: 'Acompanhe seu Progresso',
     text: 'Veja sua evolução com nosso sistema de leitura contabilizada e conquiste novos patamares.'
   },
   {
-    image: '/images/carrossel3.jpg',
+    image: '/images/placeholder3.png',
     title: 'Comunidade de Apoio',
     text: 'Participe de uma comunidade que incentiva o crescimento pessoal e profissional.'
   }
@@ -22,21 +22,27 @@ const slides = [
 export default function CarouselInfo() {
   const [current, setCurrent] = useState(0)
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length)
+  const nextSlide = () => {
+    setCurrent(prev => {
+      const next = (prev + 1) % slides.length;
+      return next;
+    });
+  };
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 2000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div className="w-full px-0 md:px-8 mt-2 mb-12">
       <div className="relative rounded-2xl overflow-hidden shadow-lg backdrop-blur-md bg-white/10 border border-white/20 w-full" style={{height: '340px'}}>
-        <div className="flex items-center justify-center h-64 bg-black/30">
-          <Image
-            src={slides[current].image}
-            alt={slides[current].title}
-            width={1600}
-            height={256}
-            className="object-cover h-full w-full"
-            style={{ maxHeight: '256px', objectFit: 'cover' }}
-          />
+        <div className="flex items-center justify-center h-64 bg-gray-300 text-gray-600 font-bold text-2xl">
+          IMAGEM CARROSSEL {current + 1}
         </div>
         <div className="p-6 text-center">
           <h3 className="text-xl font-bold text-white mb-2">{slides[current].title}</h3>

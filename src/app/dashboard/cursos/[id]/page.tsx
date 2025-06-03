@@ -126,7 +126,7 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
     id: 3,
     title: 'Comunicação Corporativa',
     instructor: 'Maria Costa',
-    progress: 90,
+    progress: 0,
     modules: [
       {
         id: 1,
@@ -147,7 +147,7 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
         completed: false,
         lessons: [
           {
-            id: 1,
+            id: 2,
             title: 'Barreiras e Ruídos na Comunicação Organizacional',
             content: 'As falhas na comunicação têm origem quando o emissor considera o receptor como um agente passivo. As diferenças de experiências, cultura, temperamento e percepção afetam a interpretação da mensagem. Os ruídos mais comuns incluem: excesso de dados, falta de liderança, cultura organizacional fechada, e baixa empatia. Emoções fortes agem como ruídos, distorcendo o significado. É vital reconhecer que tanto emissor quanto receptor têm responsabilidades compartilhadas no processo comunicacional.',
             completed: false
@@ -160,7 +160,7 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
         completed: false,
         lessons: [
           {
-            id: 1,
+            id: 3,
             title: 'Confiança, Relações Humanas e Intenção Comunicacional',
             content: 'Relações humanas moldam a comunicação. Onde há confiança, há mais abertura e compreensão. Onde há desconfiança, a comunicação tende ao fracasso, mesmo com palavras bem escolhidas. É essencial que o emissor compreenda como é percebido pelo receptor, tanto em termos de significado total (quem é) quanto de intenção específica (o que pretende). A comunicação corporativa deve partir da ação coerente, pois atitudes falam mais alto que palavras. Relações são construídas por meio da empatia, escuta ativa e intenção clara.\n\nOs Três Componentes da Mensagem: Fatos, Sentimentos e Propósitos\nToda mensagem codificada possui três elementos: fatos objetivos (dados e informações), sentimentos (reações emocionais) e propósitos (intenções do emissor). O bom comunicador deve ser preciso, breve e claro com os fatos; demonstrar empatia e respeitar os sentimentos alheios; e deixar claro seu propósito. Compreender e equilibrar esses três aspectos reduz conflitos e aumenta a efetividade da comunicação. Ao integrar sentimentos e intenções aos fatos, a comunicação ganha humanidade e direção.',
             completed: false
@@ -173,7 +173,7 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
         completed: false,
         lessons: [
           {
-            id: 1,
+            id: 4,
             title: 'O Papel da Liderança e a Alta Direção na Comunicação',
             content: 'A alta direção tem papel central na comunicação corporativa. Ela deve garantir fluidez nos fluxos de informação, coerência entre discurso e prática e sinceridade na partilha de dados. A comunicação eficaz envolve adaptação ao ponto de vista do receptor, transmissão dos conteúdos em pequenas doses, e abertura para feedback e participação ativa. O líder deve agir como facilitador do diálogo, criando espaços de escuta e expressão.',
             completed: false
@@ -186,7 +186,7 @@ FREITAS, Luiz Carlos de. Comunicação Organizacional. Apostila acadêmica.`,
         completed: false,
         lessons: [
           {
-            id: 1,
+            id: 5,
             title: 'Competências do Comunicador Eficaz e Boas Práticas',
             content: 'O comunicador eficaz é um bom ouvinte, empático, aberto a críticas construtivas e preparado para dialogar. Deve confirmar a compreensão da mensagem, ser assertivo e estimular a expressão do outro. É fundamental buscar feedbacks, adequar a linguagem à audiência e praticar a escuta ativa. A melhoria contínua das competências comunicacionais é um diferencial competitivo tanto para o profissional quanto para a organização.\n\nReferência:\nCASTRO, Luciano. Comunicação Empresarial. LCN Gestão, 2016. Disponível em: https://www.lcngestao.com.br',
             completed: false
@@ -227,24 +227,42 @@ export default function CoursePage() {
 
   const handleLessonClick = (lessonId: number) => {
     setSelectedLesson(lessonId);
-    
-    // Marcar a lição como concluída no estado local
+    updateLessonProgress(lessonId);
+  };
+
+  const updateLessonProgress = (lessonId: number) => {
     setCoursesData(prevCoursesData => {
       return prevCoursesData.map(course => {
         if (course.id === courseId) {
+          const updatedModules = course.modules.map(module => {
+            const updatedLessons = module.lessons.map(lesson => {
+              if (lesson.id === lessonId) {
+                return { ...lesson, completed: true };
+              }
+              return lesson;
+            });
+
+            // Verificar se todas as lições do módulo estão concluídas
+            const allLessonsCompleted = updatedLessons.every(lesson => lesson.completed);
+
+            return {
+              ...module,
+              completed: allLessonsCompleted,
+              lessons: updatedLessons
+            };
+          });
+
+          // Calcular o progresso geral do curso
+          const totalLessons = updatedModules.reduce((acc, module) => acc + module.lessons.length, 0);
+          const completedLessons = updatedModules.reduce((acc, module) => 
+            acc + module.lessons.filter(lesson => lesson.completed).length, 0
+          );
+          const newProgress = Math.round((completedLessons / totalLessons) * 100);
+
           return {
             ...course,
-            modules: course.modules.map(module => {
-              return {
-                ...module,
-                lessons: module.lessons.map(lesson => {
-                  if (lesson.id === lessonId) {
-                    return { ...lesson, completed: true };
-                  }
-                  return lesson;
-                })
-              };
-            })
+            progress: newProgress,
+            modules: updatedModules
           };
         }
         return course;
@@ -264,6 +282,7 @@ export default function CoursePage() {
   const findCurrentLessonInfo = () => {
     let currentModuleIndex = -1;
     let currentLessonIndex = -1;
+    let currentModule = null;
 
     for (let i = 0; i < courseData.modules.length; i++) {
       const module = courseData.modules[i];
@@ -271,10 +290,12 @@ export default function CoursePage() {
       if (lessonIndex !== -1) {
         currentModuleIndex = i;
         currentLessonIndex = lessonIndex;
-        return { module, lessonIndex, currentModuleIndex };
+        currentModule = module;
+        break;
       }
     }
-    return null;
+
+    return currentModule ? { module: currentModule, lessonIndex: currentLessonIndex, currentModuleIndex } : null;
   };
 
   const currentLessonInfo = findCurrentLessonInfo();
@@ -286,15 +307,20 @@ export default function CoursePage() {
   const goToNextLesson = () => {
     if (!currentModule || currentLessonIndex === undefined || currentModuleIndex === undefined) return;
 
+    // Primeiro, marca a aula atual como concluída
+    updateLessonProgress(selectedLesson);
+
     // Verifica se há uma próxima lição no módulo atual
     if (currentLessonIndex < currentModule.lessons.length - 1) {
-      setSelectedLesson(currentModule.lessons[currentLessonIndex + 1].id);
+      const nextLessonId = currentModule.lessons[currentLessonIndex + 1].id;
+      setSelectedLesson(nextLessonId);
     } else {
       // Se não houver próxima lição no módulo atual, procura o próximo módulo
       if (currentModuleIndex < courseData.modules.length - 1) {
         const nextModule = courseData.modules[currentModuleIndex + 1];
         if (nextModule.lessons.length > 0) {
-          setSelectedLesson(nextModule.lessons[0].id);
+          const nextLessonId = nextModule.lessons[0].id;
+          setSelectedLesson(nextLessonId);
           setExpandedModule(nextModule.id); // Expande o próximo módulo
         }
       }
@@ -313,7 +339,8 @@ export default function CoursePage() {
       if (currentModuleIndex > 0) {
         const previousModule = courseData.modules[currentModuleIndex - 1];
         if (previousModule.lessons.length > 0) {
-          setSelectedLesson(previousModule.lessons[previousModule.lessons.length - 1].id);
+          const lastLessonId = previousModule.lessons[previousModule.lessons.length - 1].id;
+          setSelectedLesson(lastLessonId);
           setExpandedModule(previousModule.id); // Expande o módulo anterior
         }
       }
@@ -353,46 +380,91 @@ export default function CoursePage() {
                 <AcademicCapIcon className="w-5 h-5 text-[#FD6F2F]" />
                 <h2 className="text-white font-medium">Módulos</h2>
               </div>
-              <div className="space-y-2">
-                {courseData.modules.map(module => (
-                  <div key={module.id}>
-                    <button
-                      onClick={() => handleModuleClick(module.id)}
-                      className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        {module.completed ? (
-                          <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                        ) : (
-                          <BookOpenIcon className="w-5 h-5 text-white/60" />
-                        )}
-                        <span className="text-white">{module.title}</span>
-                      </div>
-                      {expandedModule === module.id ? (
-                        <ChevronDownIcon className="w-4 h-4 text-white/60" />
-                      ) : (
-                        <ChevronRightIcon className="w-4 h-4 text-white/60" />
-                      )}
-                    </button>
-                    {expandedModule === module.id && (
-                      <div className="ml-7 mt-2 space-y-1">
-                        {module.lessons.map(lesson => (
-                          <button
-                            key={lesson.id}
-                            onClick={() => handleLessonClick(lesson.id)}
-                            className={`w-full text-left p-2 rounded-lg transition-colors ${
-                              selectedLesson === lesson.id
-                                ? 'bg-[#FD6F2F]/20 text-[#FD6F2F]'
-                                : 'hover:bg-white/5 text-white/60 hover:text-white'
-                            }`}
-                          >
-                            {lesson.title}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+              <div className="mb-4">
+                <div className="flex justify-between text-sm text-white/60 mb-1">
+                  <span>Progresso Geral</span>
+                  <span className="font-medium text-[#FD6F2F]">{courseData.progress}%</span>
+                </div>
+                <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
+                  <div 
+                    className="bg-gradient-to-r from-[#FD6F2F] to-[#FF8F5F] h-2.5 rounded-full transition-all duration-300 ease-in-out" 
+                    style={{ width: `${courseData.progress}%` }}
+                  >
+                    <div className="h-full w-full bg-white/20 animate-pulse"></div>
                   </div>
-                ))}
+                </div>
+              </div>
+              <div className="space-y-2">
+                {courseData.modules.map(module => {
+                  // Calcular progresso do módulo
+                  const totalLessons = module.lessons.length;
+                  const completedLessons = module.lessons.filter(lesson => lesson.completed).length;
+                  const moduleProgress = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
+                  return (
+                    <div key={module.id}>
+                      <button
+                        onClick={() => handleModuleClick(module.id)}
+                        className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          {moduleProgress === 100 ? (
+                            <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                          ) : (
+                            <BookOpenIcon className="w-5 h-5 text-white/60" />
+                          )}
+                          <span className="text-white">{module.title}</span>
+                        </div>
+                        {expandedModule === module.id ? (
+                          <ChevronDownIcon className="w-4 h-4 text-white/60" />
+                        ) : (
+                          <ChevronRightIcon className="w-4 h-4 text-white/60" />
+                        )}
+                      </button>
+                      
+                      {expandedModule === module.id && (
+                        <div className="ml-7 mt-2 space-y-2">
+                          <div className="mb-2">
+                            <div className="flex justify-between text-xs text-white/60 mb-1">
+                              <span>Progresso do Módulo</span>
+                              <span className="font-medium text-[#FD6F2F]">{moduleProgress}%</span>
+                            </div>
+                            <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                              <div 
+                                className="bg-gradient-to-r from-[#FD6F2F] to-[#FF8F5F] h-1.5 rounded-full transition-all duration-300 ease-in-out" 
+                                style={{ width: `${moduleProgress}%` }}
+                              >
+                                <div className="h-full w-full bg-white/20 animate-pulse"></div>
+                              </div>
+                            </div>
+                          </div>
+                          {module.lessons.map(lesson => (
+                            <button
+                              key={lesson.id}
+                              onClick={() => handleLessonClick(lesson.id)}
+                              className={`w-full text-left p-2 rounded-lg transition-colors ${
+                                selectedLesson === lesson.id
+                                  ? 'bg-[#FD6F2F]/20 text-[#FD6F2F]'
+                                  : lesson.completed
+                                    ? 'text-green-500 hover:bg-white/5'
+                                    : 'hover:bg-white/5 text-white/60 hover:text-white'
+                              }`}
+                            >
+                              <div className="flex items-center gap-2">
+                                {lesson.completed ? (
+                                  <CheckCircleIcon className="w-4 h-4" />
+                                ) : (
+                                  <div className="w-4 h-4 border border-current rounded-full" />
+                                )}
+                                {lesson.title}
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -412,14 +484,19 @@ export default function CoursePage() {
                   </div>
                   <div className="mt-8 flex justify-between items-center">
                     <button
-                      className="px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
+                      className={`px-4 py-2 rounded-lg transition-colors ${
+                        currentLesson?.completed
+                          ? 'bg-green-500/20 text-green-400 cursor-default'
+                          : 'bg-white/10 text-white hover:bg-white/20'
+                      }`}
                       onClick={() => {
-                        // Marcar aula como concluída
-                        // A marcação já é feita no handleLessonClick ao selecionar a aula
-                        // console.log('Marcar como concluída'); // Remover log
+                        if (!currentLesson?.completed) {
+                          updateLessonProgress(currentLesson?.id || 0);
+                        }
                       }}
+                      disabled={currentLesson?.completed}
                     >
-                      Marcar como concluída
+                      {currentLesson?.completed ? 'Aula concluída ✓' : 'Marcar como concluída'}
                     </button>
                     <div className="flex gap-2">
                       <button
