@@ -92,14 +92,24 @@ const certificates = [
   {
     id: 1,
     title: 'Comunicação Efetiva',
-    date: '15/02/2024',
-    status: 'Concluído'
+    date: '15/02/2025',
+    status: 'Concluído',
+    image: '/images/logocomuniquese.png',
+    code: 'CERT-2024-001',
+    instructor: 'Prof. João Silva',
+    hours: 40,
+    studentName: 'Maria Oliveira'
   },
   {
     id: 2,
     title: 'Oratória Básica',
-    date: '01/02/2024',
-    status: 'Concluído'
+    date: '01/02/2025',
+    status: 'Concluído',
+    image: '/images/logocomuniquese.png',
+    code: 'CERT-2024-002',
+    instructor: 'Prof. Ana Santos',
+    hours: 30,
+    studentName: 'Maria Oliveira'
   }
 ];
 
@@ -262,14 +272,32 @@ export default function Dashboard() {
             </h2>
             <div className="space-y-4">
               {certificates.map(certificate => (
-                <div key={certificate.id} className="p-4 rounded-lg bg-black/30 border border-white/10">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-white font-medium">{certificate.title}</h3>
-                    <span className="px-2 py-1 rounded-full text-xs bg-green-500/20 text-green-400">
-                      {certificate.status}
-                    </span>
+                <div 
+                  key={certificate.id} 
+                  className="p-4 rounded-lg bg-black/30 border border-white/10 hover:bg-black/40 transition-all cursor-pointer"
+                  onClick={() => router.push(`/certificados/${certificate.code.toLowerCase()}`)}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-24 h-24 relative rounded-lg overflow-hidden">
+                      <Image
+                        src={certificate.image}
+                        alt={certificate.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-white font-medium">{certificate.title}</h3>
+                        <span className="px-2 py-1 rounded-full text-xs bg-green-500/20 text-green-400">
+                          {certificate.status}
+                        </span>
+                      </div>
+                      <p className="text-white/60 text-sm mt-1">Concluído em {certificate.date}</p>
+                      <p className="text-white/60 text-sm mt-1">Instrutor: {certificate.instructor}</p>
+                      <p className="text-white/60 text-sm">Carga horária: {certificate.hours}h</p>
+                    </div>
                   </div>
-                  <p className="text-white/60 text-sm mt-1">Concluído em {certificate.date}</p>
                 </div>
               ))}
             </div>
